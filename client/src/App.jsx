@@ -5,6 +5,7 @@ import './App.css'
 import Story from './pages/Story'
 import {Routes, Route} from 'react-router-dom'
 import CreateRoom from './pages/CreateRoom'
+import Home from './pages/Home'
 
 function App() {
   
@@ -13,9 +14,7 @@ function App() {
     <>
       
       <Routes>
-        <Route path='/' element= {<div className='font-bold text-blue-800 text-3xl uppercase' >
-        Story collab..
-      </div>}/>
+        <Route path='/' element= {<Home/>}/>
         <Route path='/story/:storyId' element={<Story/>} />
         <Route path='/rooms' element={<CreateRoom/>} />
       </Routes>
