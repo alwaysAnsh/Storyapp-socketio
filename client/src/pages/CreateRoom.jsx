@@ -31,10 +31,12 @@ const CreateRoom = () => {
     const handleCreateRoom = () => {
         
         // dispatch(updateStoryId(socket.id))
+        setIsExistingRoom(false)
         setIsClicked(true)
         
     } 
     const handleEnterRoom = async() => {
+        setIsExistingRoom(false)
         setIsClicked(false)
         try {
             
@@ -62,6 +64,7 @@ const CreateRoom = () => {
     }
 
     const handleExistingRoom = ()=> {
+        setIsClicked(false)
         setIsExistingRoom(true)
     }
 
@@ -84,8 +87,8 @@ const CreateRoom = () => {
                 onClick={handleCreateRoom}
                 className='btn' >Create New Room</button>
                 {
-                    isClicked && <div>
-                        <span>Room ID created successfullly: <span className='font-bold text-lg cursor-pointer' onClick={handleEnterRoom} >{socket.id}</span> </span>
+                    isClicked && <div className='flex flex-col gap-6' >
+                        <span className='text-white' >Room ID created successfullly: <span className='font-bold text-white text-lg cursor-pointer' onClick={handleEnterRoom} >{socket.id}</span> </span>
                         <input type="text"
                         placeholder='enter username (unique)'
                         onChange={(e) => {setUsername(e.target.value); console.log("username: ", username)}}
