@@ -3,6 +3,7 @@ import { io } from 'socket.io-client'
 import { updateStoryId } from '../redux/slices/storyIdSlice'
 import {useSelector, useDispatch} from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { nanoid } from 'nanoid'
 
 const CreateRoom = () => {
 
@@ -34,22 +35,26 @@ const CreateRoom = () => {
     const handleEnterRoom = async() => {
         setIsClicked(false)
         try {
+            // const roomId = nanoid();
+            // console.log("roomid is : ", roomId)
             const res = await fetch('/api/room/create', {
                 method: 'POST',
                 headers:{
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(username)
+                body: JSON.stringify({username})
               })
             //   console.log("res.roomId from response is: ", res.roomId)
+              const response = await res.json();
+              console.log("response is: ", response)
 
-              if(!res.success){
-                console.log("response is false")
+              if(!response.success){
+                console.log("response is false", response.message)
 
               }
-              console.log("response is: ", res)
-              dispatch(updateStoryId(res.username))
-            navigate(`/story/${storyId}`)
+            //   console.log("response is: ", response)
+              dispatch(updateStoryId(response.user.username))
+            navigate(`/story/${response.user.username}`)
         } catch (error) {
             console.log("inside catch block of client side: ", error)
         }

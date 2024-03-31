@@ -1,10 +1,11 @@
 import User from "../models/user.model.js";
+import {nanoid} from 'nanoid'
 
 // export const createRoom = async(req, res ) => {
 //         // console.log("inside create room!!")  
         
 //     try {
-//         const {username:username, roomId:roomId } = req.body;
+//         const {username, roomId } = req.body;
 //         console.log("room id: ", roomId)
 //         if(!username || !roomId ){
 //             return res.json({
@@ -29,7 +30,7 @@ import User from "../models/user.model.js";
 //         })
 
 //     } catch (error) {
-//         console.log("error inside create room controller")
+//         console.log("error inside create room controller", error)
 //         return res.status(400).json({
 //             success: false,
 //             message: "error creating room"
@@ -95,7 +96,8 @@ try {
         })
     }
     //if all info is correct then create the room with this id
-    const user = await User.create(req.body);
+    const roomId = nanoid();
+    const user = await User.create({username, roomId: roomId});
     console.log("user: ", user)
     return res.status(200).json({
         success: true,

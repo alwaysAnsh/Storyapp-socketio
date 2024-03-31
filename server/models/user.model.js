@@ -6,12 +6,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    // roomId: {
-    //     type: String,
-    //     // unique: true,
-    //     // required: true,
-    //     default: "room1"
-    // }
+    roomId: {
+        type: String,
+        // unique: true,
+        // required: true,
+        default: "room6"
+    }
 },{timestamps: true})
 
 const User = mongoose.model('User',userSchema)
