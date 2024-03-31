@@ -4,6 +4,8 @@ import { updateStoryId } from '../redux/slices/storyIdSlice'
 import {useSelector, useDispatch} from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { nanoid } from 'nanoid'
+import blackcup from '../assets/blackcup.mp4'
+import '../../src/App.css'
 
 const CreateRoom = () => {
 
@@ -35,8 +37,7 @@ const CreateRoom = () => {
     const handleEnterRoom = async() => {
         setIsClicked(false)
         try {
-            // const roomId = nanoid();
-            // console.log("roomid is : ", roomId)
+            
             const res = await fetch('/api/room/create', {
                 method: 'POST',
                 headers:{
@@ -77,11 +78,11 @@ const CreateRoom = () => {
 
   return (
     
-        <div className='flex flex-col justify-center items-center gap-4 mx-auto h-screen bg-pink-50' >
-            
+        <div className='md:flex  md:justify-around md:items-center gap-4 mx-auto h-screen  ' >
+            <video src={blackcup} autoPlay muted loop className='absolute -z-10 h-full w-screen object-fill '></video>
                 <button 
                 onClick={handleCreateRoom}
-                className='bg-red-500 text-white font-semibold text-lg p-6 rounded-md hover:bg-red-600 transition-all duration-200' >Create New Room</button>
+                className='btn' >Create New Room</button>
                 {
                     isClicked && <div>
                         <span>Room ID created successfullly: <span className='font-bold text-lg cursor-pointer' onClick={handleEnterRoom} >{socket.id}</span> </span>
@@ -97,7 +98,7 @@ const CreateRoom = () => {
             
             <button 
             onClick={handleExistingRoom}
-            className='bg-blue-500 text-white font-semibold text-lg p-6 rounded-md hover:bg-blue-600  transition-all duration-200' >Enter Existing Room</button>
+            className='btn' >Enter Existing Room</button>
             {
                 existingRoom && <div>
                     <input type="text"
