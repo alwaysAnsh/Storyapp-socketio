@@ -6,6 +6,7 @@ import Story from './pages/Story'
 import {Routes, Route} from 'react-router-dom'
 import CreateRoom from './pages/CreateRoom'
 import Home from './pages/Home'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   
@@ -15,7 +16,9 @@ function App() {
       
       <Routes>
         <Route path='/' element= {<Home/>}/>
+        <Route element={<PrivateRoute/>} >
         <Route path='/story/:storyId' element={<Story/>} />
+        </Route>
         <Route path='/rooms' element={<CreateRoom/>} />
       </Routes>
     </>

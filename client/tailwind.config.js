@@ -9,6 +9,9 @@ export default {
       fontFamily:{
         lobster: ["Lobster", "sans-serif"],
         titillium: ["Titillium Web", "sans-serif"]
+      },
+      colors:{
+        sandbrown: '#c89666'
       }
     },
   },

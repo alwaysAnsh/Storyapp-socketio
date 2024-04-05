@@ -14,6 +14,7 @@ const CreateRoom = () => {
     const [existingRoom, setIsExistingRoom ] = useState(false)
     const [room, setRoom ] = useState('')
     const [username, setUsername ] = useState('')
+    const [iserror, setIsError] = useState('')
     console.log('storyid is: ',storyId)
     const socket = useMemo(()=>io("http://localhost:5000"),[])
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const CreateRoom = () => {
         // dispatch(updateStoryId(socket.id))
         setIsExistingRoom(false)
         setIsClicked(true)
+        setIsError('')
         
     } 
     const handleEnterRoom = async() => {
@@ -53,6 +55,7 @@ const CreateRoom = () => {
 
               if(!response.success){
                 console.log("response is false", response.message)
+                setIsError(response.message)
 
               }
             //   console.log("response is: ", response)
@@ -107,6 +110,10 @@ const CreateRoom = () => {
                             <span>Enter room</span>
                         </button>
                     </div>
+                    
+                }
+                {
+                    iserror && <div className='text-red-600 font-bold' >{iserror}</div>
                 }
             
             <button 

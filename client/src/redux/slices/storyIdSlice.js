@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    storyId:  'empty',
+    storyId:  null,
 }
 
 export const storyIdSlice = createSlice({
