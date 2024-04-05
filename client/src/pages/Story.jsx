@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux';
 import {Socket, io} from 'socket.io-client'
 import smoke from '../../src/assets/smoke.mp4'
+import '../../src/App.css'
 
 const Story = () => {
     const socket = useMemo(()=> io("http://localhost:5000"), [] );
@@ -44,9 +45,14 @@ const Story = () => {
 
   return (
     <>
-        <video src={smoke} autoPlay muted loop className=' absolute -z-10 h-auto w-screen object-cover '></video>
+        <div className='  -z-10 h-auto w-screen object-cover fixed ' >
+        <video src={smoke} autoPlay muted loop ></video>
+        </div>
+        <p className='font-bold text-center font-titillium mx-auto pt-7 w-[50%] text-3xl bg-gradient-to-r from-amber-100 via-amber-400 to-red-800 bg-clip-text text-transparent'>
+    "Open the door to endless possibilities and craft your own narrative tapestry."
+</p>        <div className='flex  gap-5 justify-evenly items-center relative h-full mt-20  ' >
 
-        <div className='flex  gap-5 justify-evenly items-center relative h-screen  ' >
+          
 
           <div className='text-8xl text-white font-bold font-lobster ' ><p className='text-sandbrown font-lobster font-bold ' >{storyId}</p> Canvas</div>
           
@@ -61,7 +67,9 @@ const Story = () => {
               style={{ resize: 'none' }}  />
             </div>
             {/* <div>{istyping ? <span className='font-semibold' >Somebody is typing...</span> : ""}</div> */}
-            <button className='bg-blue-500 text-white font-bold p-4 rounded-md w-[15%] text-xl hover:bg-blue-600 transition-all duration-200' >Save Changes</button>
+            <button className='btnsave' >
+    Save Changes
+</button>
           </div>
           
         </div>
